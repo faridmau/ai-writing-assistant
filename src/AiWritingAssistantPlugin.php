@@ -1,15 +1,15 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Faridmau\AiWritingAssistant;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-class SkeletonPlugin implements Plugin
+class AiWritingAssistantPlugin implements Plugin
 {
     public function getId(): string
     {
-        return 'skeleton';
+        return 'ai-writing-assistant';
     }
 
     public function register(Panel $panel): void

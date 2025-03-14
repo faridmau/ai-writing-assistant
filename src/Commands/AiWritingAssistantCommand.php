@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Faridmau\AiWritingAssistant\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class AiWritingAssistantCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'ai-writing-assistant';
 
     public $description = 'My command';
 
