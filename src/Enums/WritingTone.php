@@ -43,6 +43,7 @@ enum WritingTone: string implements HasLabel
     case GENUINE = 'genuine';
     case HUMBLE = 'humble';
     case MODEST = 'modest';
+
     public function getLabel(): ?string
     {
         return match ($this) {
