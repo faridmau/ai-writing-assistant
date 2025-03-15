@@ -17,14 +17,18 @@ use Faridmau\AiWritingAssistant\Enums\WritingTone;
 use Filament\Notifications\Notification;
 class AiWriterPage extends Page implements HasForms
 {
-
     use InteractsWithForms;
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
     protected static ?string $navigationGroup = 'Ai Assistant';
+
     protected static string $view = 'ai-writing-assistant::pages.form-page';
 
     protected string $labelIds = 'Writer';
+
     protected static ?string $title = 'Writer Assistant';
+
     public ?array $data = [];
 
     public function mount(): void

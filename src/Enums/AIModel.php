@@ -1,7 +1,9 @@
 <?php
 
 namespace Faridmau\AiWritingAssistant\Enums;
+
 use Filament\Support\Contracts\HasLabel;
+
 enum AIModel: string implements HasLabel
 {
     case Gpt35Turbo = 'gpt-3.5-turbo';
