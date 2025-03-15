@@ -2,19 +2,20 @@
 
 namespace Faridmau\AiWritingAssistant\Resources\Pages;
 
-use Filament\Forms\Form;
-use Filament\Pages\Page;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\RichEditor;
-use PeterColes\Languages\LanguagesFacade;
 use Faridmau\AiWritingAssistant\Enums\AIModel;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Faridmau\AiWritingAssistant\Enums\WritingTone;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Filament\Pages\Page;
+use PeterColes\Languages\LanguagesFacade;
+
 class AiWriterPage extends Page implements HasForms
 {
     use InteractsWithForms;
@@ -35,12 +36,13 @@ class AiWriterPage extends Page implements HasForms
     {
         $this->form->fill();
     }
+
     public function submit(): void
     {
         $data = $this->form->getState();
 
         $existingContent = $data['content'];
-        $this->data['content'] = $existingContent . '\n' ;
+        $this->data['content'] = $existingContent . '\n';
         // $this->notify('success', 'Form submitted successfully!');
 
         Notification::make()
@@ -49,6 +51,7 @@ class AiWriterPage extends Page implements HasForms
             ->body('The AI-generated content has been added to the field.')
             ->send();
     }
+
     public function form(Form $form): Form
     {
         return $form
@@ -80,7 +83,7 @@ class AiWriterPage extends Page implements HasForms
                                     ->placeholder(__('Select Tone'))
                                     ->reactive()
                                     ->searchable()
-                                    ->options(WritingTone::class)
+                                    ->options(WritingTone::class),
                             ]),
                         Section::make()
                             ->columnSpan(8)
@@ -88,7 +91,7 @@ class AiWriterPage extends Page implements HasForms
                                 RichEditor::make('content')
                                     ->label(__('Content'))
                                     ->columnSpan(12),
-                            ])
+                            ]),
                     ]),
 
             ])
