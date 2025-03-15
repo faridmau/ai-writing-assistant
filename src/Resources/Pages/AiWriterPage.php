@@ -2,18 +2,19 @@
 
 namespace Faridmau\AiWritingAssistant\Resources\Pages;
 
-use Filament\Pages\Page;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
-use Filament\Forms\Components\Section;
+use Filament\Pages\Page;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Monarobase\CountryList\CountryList;
-use Monarobase\CountryList\CountryListFacade;
-
+use Filament\Forms\Components\Section;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
+use PeterColes\Languages\LanguagesFacade;
+use Faridmau\AiWritingAssistant\Enums\AIModel;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Faridmau\AiWritingAssistant\Enums\WritingTone;
+use Filament\Notifications\Notification;
 class AiWriterPage extends Page implements HasForms
 {
 
@@ -30,6 +31,20 @@ class AiWriterPage extends Page implements HasForms
     {
         $this->form->fill();
     }
+    public function submit(): void
+    {
+        $data = $this->form->getState();
+
+        $existingContent = $data['content'];
+        $this->data['content'] = $existingContent . '\n' ;
+        // $this->notify('success', 'Form submitted successfully!');
+
+        Notification::make()
+            ->success()
+            ->title('Content Generated Successfully')
+            ->body('The AI-generated content has been added to the field.')
+            ->send();
+    }
     public function form(Form $form): Form
     {
         return $form
@@ -40,29 +55,35 @@ class AiWriterPage extends Page implements HasForms
                             ->columnSpan(4)
                             ->schema([
                                 Select::make(__('Language'))
+                                    ->label(__('Language'))
+                                    ->default(config('ai-writing-assistant.default_language'))
                                     ->searchable()
-                                    ->options(function(){
-                                        $countriesArray = collect(json_decode(CountryListFacade::getList('en', 'json'), true))
-                                            ->mapWithKeys(function ($value) {
-                                                return [$value => $value];
-                                            })
-                                            ->toArray();
-                                        foreach ($countriesArray as $key => $value) {
-                                            $countries[$value] = $value;
-                                        }
-                                        return $countries;
-                                    })
+                                    ->options(LanguagesFacade::lookup()->all())
                                     ->required()
                                     ->placeholder(__('Select Language'))
+                                    ->reactive(),
+                                Textarea::make('prompt')
+                                    ->required(),
+                                Select::make('model')
+                                    ->required()
+                                    ->label(__('AI Model'))
+                                    ->searchable()
+                                    ->options(AIModel::class),
+                                Select::make('narative_tone')
+                                    ->label(__('Narrative Tone'))
+                                    ->default(config('ai-writing-assistant.default_tone'))
+                                    ->required()
+                                    ->placeholder(__('Select Tone'))
                                     ->reactive()
-                                    ->afterStateUpdated(function ($state, callable $set) {
-                                        $set('language', $state);
-                                    })
+                                    ->searchable()
+                                    ->options(WritingTone::class)
                             ]),
                         Section::make()
                             ->columnSpan(8)
                             ->schema([
-                                RichEditor::make('description')
+                                RichEditor::make('content')
+                                    ->label(__('Content'))
+                                    ->columnSpan(12),
                             ])
                     ]),
 
