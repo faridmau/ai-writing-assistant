@@ -101,8 +101,8 @@ class AiWritingAssistantServiceProvider extends PackageServiceProvider
     {
         return [
             // AlpineComponent::make('ai-writing-assistant', __DIR__ . '/../resources/dist/components/ai-writing-assistant.js'),
-            Css::make('ai-writing-assistant-styles', __DIR__ . '/../resources/dist/ai-writing-assistant.css'),
-            Js::make('ai-writing-assistant-scripts', __DIR__ . '/../resources/dist/ai-writing-assistant.js'),
+            // Css::make('ai-writing-assistant-styles', __DIR__ . '/../resources/dist/ai-writing-assistant.css'),
+            // Js::make('ai-writing-assistant-scripts', __DIR__ . '/../resources/dist/ai-writing-assistant.js'),
         ];
     }
 

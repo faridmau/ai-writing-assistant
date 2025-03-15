@@ -4,7 +4,7 @@ namespace Faridmau\AiWritingAssistant;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-
+use Faridmau\AiWritingAssistant\Resources\Pages\AiWriterPage;
 class AiWritingAssistantPlugin implements Plugin
 {
     public function getId(): string
@@ -14,12 +14,16 @@ class AiWritingAssistantPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        //
+        $panel
+            ->resources([
+            ])
+            ->pages([
+                AiWriterPage::class,
+            ]);
     }
 
     public function boot(Panel $panel): void
     {
-        //
     }
 
     public static function make(): static
