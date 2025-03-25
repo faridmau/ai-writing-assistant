@@ -146,7 +146,9 @@ class AiWritingAssistantServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_ai-writing-assistant_table',
+            // 'create_ai-writing-assistant_table',
+            'create_categories_table',
+            'create_templates_table',
         ];
     }
 }

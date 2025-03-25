@@ -2,9 +2,9 @@
 
 namespace Faridmau\AiWritingAssistant;
 
-use Faridmau\AiWritingAssistant\Resources\Pages\AiWriterPage;
-use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Filament\Contracts\Plugin;
+use Faridmau\AiWritingAssistant\Resources\Pages\AiWriterPage;
 
 class AiWritingAssistantPlugin implements Plugin
 {
@@ -16,8 +16,6 @@ class AiWritingAssistantPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel
-            ->resources([
-            ])
             ->pages([
                 AiWriterPage::class,
             ]);
