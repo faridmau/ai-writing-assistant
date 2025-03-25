@@ -2,12 +2,13 @@
 
 namespace Faridmau\AiWritingAssistant\Policies;
 
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-use App\Models\User;
 class TemplatePolicy
 {
     use HandlesAuthorization;
+
     /**
      * Determine whether the user can view any models.
      */
