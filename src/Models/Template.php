@@ -19,7 +19,9 @@ class Template extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
     protected $guarded = [];
+
     public function getTable(): string
     {
         return config('ai-writing-assistant.tabel_prefix') . 'templates';

@@ -1,6 +1,5 @@
 <?php
 
-
 // config for Faridmau/AiWritingAssistant
 return [
     // This is default prefix for creating tables
@@ -40,5 +39,5 @@ return [
         'gpt-3.5-turbo' => 'GPT-3.5 Turbo',
         'gpt-4' => 'GPT-4',
         'gpt-4-32k' => 'GPT-4 32k',
-    ]
+    ],
 ];
